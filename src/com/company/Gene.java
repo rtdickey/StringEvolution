@@ -1,9 +1,9 @@
 package com.company;
 
 /**
- * Created by Genide on 4/25/2015.
+ * Created by Daniel Nguyen on 4/25/2015.
  */
-public class Gene {
+public class Gene implements Comparable<Gene>{
     private String code;
     private int cost;
 
@@ -33,13 +33,15 @@ public class Gene {
         this.cost = cost;
     }
 
-    //There may be some problems with this piece of code.
+    //This function takes a int and generates a string that will be the code for the gene.
     public void random(int length){
         while((length--)!=0){
             this.code += Character.toString((char) Math.floor(Math.random()*255));
         }
     }
 
+    //This function takes the original line and calculates the distance from the goal
+    // string to it's current string.
     public void calcCost(String compareTo){
         int total = 0;
         for(int i = 0; i < this.code.length(); i++){
@@ -56,18 +58,25 @@ public class Gene {
                 '}';
     }
 
-    //This is probably incorrect
-    public String mate(Gene gene){
+    //The mating function takes another chromosome as an argument, finds the center point
+    // and returns the code for the second child and modifies this.code
+    public Gene[] mate(Gene gene){
         //Should we make the pivot point random?
         int pivot = Math.round(this.code.length() / 2) - 1;
 
         String child1 = (this.code.substring(0, pivot) + gene.code.substring(pivot));
         String child2 = (gene.code.substring(0, pivot) + this.code.substring(pivot));
 
-        this.code = child1;
-        return child2;
+        Gene []children = new Gene[2];
+        children[0] = new Gene(child1);
+        children[1] = new Gene(child2);
+
+        return children;
     }
 
+    //This function takes a percent chance as the argument. If the gene is to mutate,
+    // the function randomly decides if we're going to add or subtract from the
+    // randomly selected character.
     public void mutate(double chance){
         if(Math.random() > chance){
             return;
@@ -96,5 +105,11 @@ public class Gene {
             }
         }
         setCode(newCode);
+    }
+
+    @Override
+    public int compareTo(Gene compareGene) {
+        int compareCost = compareGene.getCost();
+        return this.cost - compareCost;
     }
 }

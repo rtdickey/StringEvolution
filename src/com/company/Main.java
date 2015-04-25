@@ -1,23 +1,40 @@
 package com.company;
 
+import java.io.IOException;
+
 public class Main {
 
     public static void main(String[] args) {
-	    // write your code here
-        Gene test1 = new Gene();
-        Gene test2 = new Gene();
-        String line = "Hello World";
-        test1.random(line.length());
-        test1.calcCost(line);
-        test2.random(line.length());
-        test2.calcCost(line);
-        System.out.println(test1.toString());
-        System.out.println(test2.toString());
+        Population city = new Population(10, "Hello", .5);
+        while(!city.generation()){
+            System.out.println(city.toString());
+            try {
+                Thread.sleep(50);    //1000 milliseconds is one second.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            clearConsole();
+        }
+    }
 
-        test2.setCode(test1.mate(test2));
-        test1.calcCost(line);
-        test2.calcCost(line);
-        System.out.println(test1.toString());
-        System.out.println(test2.toString());
+    public static void clearConsole()
+    {
+        try
+        {
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows"))
+            {
+                Runtime.getRuntime().exec("cls");
+            }
+            else
+            {
+                Runtime.getRuntime().exec("clear");
+            }
+        }
+        catch (final Exception e)
+        {
+            //  Handle any exceptions.
+        }
     }
 }
