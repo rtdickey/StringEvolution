@@ -59,7 +59,7 @@ public class Gene implements Comparable<Gene>{
     }
 
     //The mating function takes another chromosome as an argument, finds the center point
-    // and returns the code for the second child and modifies this.code
+    // and returns the 2 children in an array of size 2
     public Gene[] mate(Gene gene){
         //Should we make the pivot point random?
         int pivot = Math.round(this.code.length() / 2) - 1;
