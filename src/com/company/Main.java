@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
-        Population city = new Population(10, "Hello", .5);
+        Population city = new Population(20, "One step closer to skynet", .5);
         while(!city.generation()){
             System.out.println(city.toString());
             try {
