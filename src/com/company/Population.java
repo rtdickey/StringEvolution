@@ -151,7 +151,7 @@ public class Population {
     }
 
     public BigDecimal truncatePercentComplete() {
-        BigDecimal truncatedPercentage = new BigDecimal(this.percentComplete * 100).setScale(2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal truncatedPercentage = new BigDecimal(this.percentComplete * 100).setScale(2, BigDecimal.ROUND_HALF_DOWN);
         return truncatedPercentage;
     }
 }
