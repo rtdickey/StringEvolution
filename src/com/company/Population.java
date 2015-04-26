@@ -11,6 +11,8 @@ public class Population {
     private double chance;
     private String goalString;
     private int generationNum;
+    private int initialCost;
+    private double percentComplete;
 
     public Population(int size, String goalString, double chance) {
         this.size = size;
@@ -18,6 +20,8 @@ public class Population {
         this.chance = chance;
         this.generationNum = 0;
         generateTown();
+        this.initialCost = town[0].getCost();
+        this.percentComplete = 0;
     }
 
     //This function creates the town for the constructor
@@ -29,6 +33,7 @@ public class Population {
             town[i].random(length);
             town[i].calcCost(goalString);
         }
+        Arrays.sort(town);
         this.town = town;
     }
 
@@ -64,6 +69,22 @@ public class Population {
         this.generationNum = generationNum;
     }
 
+    public int getInitialCost() {
+        return initialCost;
+    }
+
+    public void setInitialCost(int initialCost) {
+        this.initialCost = initialCost;
+    }
+
+    public double getPercentComplete() {
+        return percentComplete;
+    }
+
+    public void setPercentComplete(double percentComplete) {
+        this.percentComplete = percentComplete;
+    }
+
     //This function returns a string of the entire town
     public String printTown(){
         String output = "";
@@ -80,7 +101,9 @@ public class Population {
                 "size=" + size +
                 ", chance=" + chance +
                 ", goalString='" + goalString +
-                ", generationNum='" + generationNum + '\'' +
+                ", generationNum=" + generationNum +
+                ", initalCost=" + initialCost +
+                ", percentComplete=" + percentComplete +
                 '}' + "\n" +
                 printTown();
     }
@@ -99,6 +122,9 @@ public class Population {
         calcTownCost();
 
         Arrays.sort(town);
+
+        calculatePercentComplete(town[0].getCost());
+
         Gene []children = (town[0].mate(town[1]));
         town[size-2] = children[0];
         town[size-1] = children[1];
@@ -109,6 +135,7 @@ public class Population {
             if(town[i].getCode().equals(goalString)) {
                 Arrays.sort(town);
                 calcTownCost();
+                calculatePercentComplete(town[0].getCost());
                 System.out.println(this.toString());
                 return true;
             }
@@ -116,5 +143,9 @@ public class Population {
 
         generationNum++;
         return false;
+    }
+
+    public void calculatePercentComplete(int currentBest){
+        this.percentComplete = (this.initialCost - currentBest)/(double)this.initialCost;
     }
 }
