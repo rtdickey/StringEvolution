@@ -1,5 +1,6 @@
 package com.company;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 /**
@@ -147,5 +148,10 @@ public class Population {
 
     public void calculatePercentComplete(int currentBest){
         this.percentComplete = (this.initialCost - currentBest)/(double)this.initialCost;
+    }
+
+    public BigDecimal truncatePercentComplete() {
+        BigDecimal truncatedPercentage = new BigDecimal(this.percentComplete * 100).setScale(2, BigDecimal.ROUND_HALF_UP);
+        return truncatedPercentage;
     }
 }

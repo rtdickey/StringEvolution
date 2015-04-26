@@ -7,7 +7,9 @@ public class Main {
     public static void main(String[] args) {
         Population city = new Population(20, "Hello World!", .5);
         while(!city.generation()){
-            System.out.println(city.toString());
+            System.out.println(city.truncatePercentComplete() + "%");
+
+            //To delay the thread by 50 mills in order to allow output to keep up.
             try {
                 Thread.sleep(50);    //1000 milliseconds is one second.
             } catch(InterruptedException ex) {
