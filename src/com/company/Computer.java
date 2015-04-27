@@ -13,8 +13,10 @@ public class Computer {
     public void findGoalString(){
         while(!city.generation()){
             System.out.println(city.truncatePercentComplete() + "%");
+            //System.out.println(city);
 
-            //To delay the thread by 50 mills in order to allow output to keep up.
+            //To delay the thread by 50 mills in order to allow the person to keep up.
+
             try {
                 Thread.sleep(50);    //1000 milliseconds is one second.
             } catch(InterruptedException ex) {

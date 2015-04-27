@@ -3,7 +3,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        Computer computer = new Computer(20, "Hello World!", .5);
+        Computer computer = new Computer(20, "The quick brown fox jumped over the lazy dog.", .5);
         computer.findGoalString();
     }
 
