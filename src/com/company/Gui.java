@@ -14,22 +14,57 @@ import javax.swing.*;
 public class Gui {
 
     private JFrame frame;
-    private JTextField answerField;
     private User user;
     private Population city;
+
+    private JTextPane textPane_User;
+    private JTextPane textPane_Computer;
+    private JTextField answerField;
+    private JTextPane textPane_1;
+    private JTextPane textPane_2;
+    private JTextPane textPane_3;
+    private JTextPane textPane_4;
+    private JTextPane textPane_5;
+    private JTextPane textPane_6;
+    private JTextPane textPane_7;
+    private JTextPane textPane_8;
+    private JTextPane textPane_9;
+    private JTextPane textPane_10;
+    private JTextPane textPane_11;
+    private JTextPane textPane_12;
 
     /**
      * Launch the application.
      */
     public static void main(String[] args) {
+        Gui window;
+
+        try{
+            window = new Gui();
+            window.frame.setVisible(true);
+
+            //Make new processes for computer/user
+            window.computerFindAnswer();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        /*
         EventQueue.invokeLater(() -> {
             try {
-                Gui window = new Gui();
+                window = new Gui();
                 window.frame.setVisible(true);
+                Thread.sleep(5000);
+                //Thread.sleep(10000);
+                //window.computerFindAnswer();
             } catch (Exception e) {
                 e.printStackTrace();
+                window = new Gui();
+                window.frame.setVisible(true);
+
             }
+            window.textPane.setText("Hello World");
         });
+        */
     }
 
     /**
@@ -40,7 +75,7 @@ public class Gui {
         user = new User(goalString);
         city = new Population(20, goalString, .5);
         initialize();
-    }
+}
 
     /**
      * Initialize the contents of the frame.
@@ -56,13 +91,17 @@ public class Gui {
         frame.getContentPane().add(answerField);
         answerField.setColumns(10);
 
-        JTextPane textPane = new JTextPane();
-        textPane.setEditable(false);
-        textPane.setBackground(new Color(240, 240, 240));
-        textPane.setBounds(55, 20, 316, 103);
-        frame.getContentPane().add(textPane);
+        textPane_User = new JTextPane();
+        textPane_User.setEditable(false);
+        //textPane_User.setBackground(new Color(240, 240, 240));
+        textPane_User.setBounds(55, 20, 147, 103);
+        frame.getContentPane().add(textPane_User);
 
-
+        textPane_Computer = new JTextPane();
+        textPane_Computer.setEditable(false);
+        //textPane_Computer.setBackground(new Color(240, 240, 240));
+        textPane_Computer.setBounds(224, 20, 147, 103);
+        frame.getContentPane().add(textPane_Computer);
 
         /*
         textPane.setText(user.getLetters() + "\n" + user.getCurrentAnswer());
@@ -79,60 +118,60 @@ public class Gui {
         });
         */
 
-        JTextPane textPane_1 = new JTextPane();
+        textPane_1 = new JTextPane();
         textPane_1.setBounds(111, 168, 30, 30);
         frame.getContentPane().add(textPane_1);
 
-        JTextPane textPane_2 = new JTextPane();
+        textPane_2 = new JTextPane();
         textPane_2.setBounds(147, 168, 30, 30);
         frame.getContentPane().add(textPane_2);
 
-        JTextPane textPane_3 = new JTextPane();
+        textPane_3 = new JTextPane();
         textPane_3.setBounds(183, 168, 30, 30);
         frame.getContentPane().add(textPane_3);
 
-        JTextPane textPane_4 = new JTextPane();
+        textPane_4 = new JTextPane();
         textPane_4.setBounds(219, 168, 30, 30);
         frame.getContentPane().add(textPane_4);
 
-        JTextPane textPane_5 = new JTextPane();
+        textPane_5 = new JTextPane();
         textPane_5.setBounds(255, 168, 30, 30);
         frame.getContentPane().add(textPane_5);
 
-        JTextPane textPane_6 = new JTextPane();
+        textPane_6 = new JTextPane();
         textPane_6.setBounds(291, 168, 30, 30);
         frame.getContentPane().add(textPane_6);
 
-        JTextPane textPane_7 = new JTextPane();
+        textPane_7 = new JTextPane();
         textPane_7.setBounds(111, 205, 30, 30);
         frame.getContentPane().add(textPane_7);
 
-        JTextPane textPane_8 = new JTextPane();
+        textPane_8 = new JTextPane();
         textPane_8.setBounds(147, 205, 30, 30);
         frame.getContentPane().add(textPane_8);
 
-        JTextPane textPane_9 = new JTextPane();
+        textPane_9 = new JTextPane();
         textPane_9.setBounds(183, 205, 30, 30);
         frame.getContentPane().add(textPane_9);
 
-        JTextPane textPane_10 = new JTextPane();
+        textPane_10 = new JTextPane();
         textPane_10.setBounds(219, 205, 30, 30);
         frame.getContentPane().add(textPane_10);
 
-        JTextPane textPane_11 = new JTextPane();
+        textPane_11 = new JTextPane();
         textPane_11.setBounds(255, 205, 30, 30);
         frame.getContentPane().add(textPane_11);
 
-        JTextPane textPane_12 = new JTextPane();
+        textPane_12 = new JTextPane();
         textPane_12.setBounds(291, 205, 30, 30);
         frame.getContentPane().add(textPane_12);
 
-        computerFindAnswer(textPane);
+
     }
 
-    public void computerFindAnswer(JTextPane textPane){
-        while(!city.generation()&&(city.getGenerationNum()<200000)){
-            textPane.setText(String.valueOf(city.truncatePercentComplete())+"%");
+    public void computerFindAnswer(){
+        while(!city.generation() && (city.getGenerationNum() < 200000)) {
+            textPane_Computer.setText(String.valueOf(city.truncatePercentComplete())+"%");
             System.out.println(city.truncatePercentComplete() + "%");
             //System.out.println(city);
 
