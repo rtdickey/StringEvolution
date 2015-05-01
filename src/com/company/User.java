@@ -92,7 +92,10 @@ public class User {
     private void initializeCurrentAnswer(){
         this.currentAnswer = "";
         for(int i=0;i<goalString.length();i++){
-            this.currentAnswer += "_";
+            if(this.goalString.charAt(i)==' ')
+                this.currentAnswer += " ";
+            else
+                this.currentAnswer += "_";
         }
     }
 
@@ -109,7 +112,8 @@ public class User {
 
         //this.currentAnswer = "";
         for(int i=0;i<size;i++){
-            if(Character.toUpperCase(answer.charAt(i)) == Character.toUpperCase(this.goalString.charAt(i))){
+            if((Character.toUpperCase(answer.charAt(i)) == Character.toUpperCase(this.goalString.charAt(i))) ||
+                    (newCurrentAnswer.charAt(i)!='_')){
                 //System.out.println("Correct letter: " + answer.charAt(i));
                 newCurrentAnswer = newCurrentAnswer.substring(0, i) + this.goalString.charAt(i) + newCurrentAnswer.substring(i + 1);
             }

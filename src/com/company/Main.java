@@ -1,5 +1,6 @@
 package com.company;
 
+import java.awt.*;
 import java.util.Scanner;
 
 public class Main {
@@ -14,10 +15,11 @@ public class Main {
 
         do{
             System.out.println("\"" + user.getLetters() + "\"");
+            System.out.println(user.getCurrentAnswer());
             guess = cin.nextLine();
             correct = user.guess(guess);
-            System.out.println(user.getCurrentAnswer());
         }while(!correct);
+        System.out.println(user.getCurrentAnswer());
     }
 
     public static void clearConsole()
