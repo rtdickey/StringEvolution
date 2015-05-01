@@ -136,8 +136,8 @@ public class Population {
             if(town[i].getCode().equals(goalString)) {
                 Arrays.sort(town);
                 calcTownCost();
-                calculatePercentComplete(town[0].getCost());
-                System.out.println(this.toString());
+                //calculatePercentComplete(town[0].getCost());
+                //System.out.println(this.toString());
                 return true;
             }
         }
@@ -151,7 +151,7 @@ public class Population {
     }
 
     public BigDecimal truncatePercentComplete() {
-        BigDecimal truncatedPercentage = new BigDecimal(this.percentComplete * 100).setScale(2, BigDecimal.ROUND_HALF_DOWN);
-        return truncatedPercentage;
+        //BigDecimal truncatedPercentage = new BigDecimal(this.percentComplete * 100).setScale(2, BigDecimal.ROUND_HALF_DOWN);
+        return new BigDecimal(this.percentComplete * 100).setScale(2, BigDecimal.ROUND_HALF_DOWN);
     }
 }
