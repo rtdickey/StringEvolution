@@ -99,20 +99,17 @@ public class Gui {
         textPane_Computer.setBounds(224, 20, 147, 103);
         frame.getContentPane().add(textPane_Computer);
 
-        /*
-        textPane.setText(user.getLetters() + "\n" + user.getCurrentAnswer());
-        answerField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                boolean correct = user.guess(answerField.getText());
-                textPane.setText(user.getLetters() + "\n" + user.getCurrentAnswer());
-                if (correct) {
-                    //System.out.println("Correct Answer");
-                    textPane.setText(textPane.getText()+"\n"+"Correct Answer!");
-                }
+
+        textPane_User.setText(user.getLetters() + "\n" + user.getCurrentAnswer());
+        answerField.addActionListener(e -> {
+            boolean correct = user.guess(answerField.getText());
+            textPane_User.setText(user.getLetters() + "\n" + user.getCurrentAnswer());
+            if (correct) {
+                //System.out.println("Correct Answer");
+                textPane_User.setText(textPane_User.getText()+"\n"+"Correct Answer!");
             }
         });
-        */
+
 
         textPane_1 = new JTextPane();
         textPane_1.setBounds(111, 168, 30, 30);
@@ -167,8 +164,8 @@ public class Gui {
 
     public void computerFindAnswer(){
         while(!city.generation() && (city.getGenerationNum() < 200000)) {
-            textPane_Computer.setText(String.valueOf(city.truncatePercentComplete())+"%");
-            System.out.println(city.truncatePercentComplete() + "%");
+            textPane_Computer.setText(String.valueOf(city.truncatePercentComplete()) + "%");
+            //System.out.println(city.truncatePercentComplete() + "%");
             //System.out.println(city);
 
             //To delay the thread by 50 mills in order to allow the person to keep up.
@@ -178,7 +175,7 @@ public class Gui {
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-
+            textPane_Computer.setText(city.getGoalString());
         }
     }
 }
