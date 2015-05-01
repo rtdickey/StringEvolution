@@ -38,16 +38,12 @@ public class Gui {
      */
     public static void main(String[] args) {
         Gui window;
+        window = new Gui();
+        window.frame.setVisible(true);
 
-        try{
-            window = new Gui();
-            window.frame.setVisible(true);
+        //Make new processes for computer/user
+        window.computerFindAnswer();
 
-            //Make new processes for computer/user
-            window.computerFindAnswer();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
         /*
         EventQueue.invokeLater(() -> {
             try {
