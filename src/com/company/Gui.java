@@ -3,7 +3,7 @@ package com.company;
 /**
  * Created by Daniel on 5/1/2015.
  */
-import java.awt.EventQueue;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -15,6 +15,8 @@ public class Gui {
 
     private JFrame frame;
     private JTextField answerField;
+    private User user;
+    private Population city;
 
     /**
      * Launch the application.
@@ -34,6 +36,9 @@ public class Gui {
      * Create the application.
      */
     public Gui() {
+        String goalString = "Hello World";
+        user = new User(goalString);
+        city = new Population(20, goalString, .5);
         initialize();
     }
 
@@ -50,11 +55,29 @@ public class Gui {
         answerField.setBounds(55, 138, 316, 20);
         frame.getContentPane().add(answerField);
         answerField.setColumns(10);
-        answerField.addActionListener(e -> System.out.println("hello"));
 
         JTextPane textPane = new JTextPane();
+        textPane.setEditable(false);
+        textPane.setBackground(new Color(240, 240, 240));
         textPane.setBounds(55, 20, 316, 103);
         frame.getContentPane().add(textPane);
+
+
+
+        /*
+        textPane.setText(user.getLetters() + "\n" + user.getCurrentAnswer());
+        answerField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean correct = user.guess(answerField.getText());
+                textPane.setText(user.getLetters() + "\n" + user.getCurrentAnswer());
+                if (correct) {
+                    //System.out.println("Correct Answer");
+                    textPane.setText(textPane.getText()+"\n"+"Correct Answer!");
+                }
+            }
+        });
+        */
 
         JTextPane textPane_1 = new JTextPane();
         textPane_1.setBounds(111, 168, 30, 30);
@@ -103,5 +126,24 @@ public class Gui {
         JTextPane textPane_12 = new JTextPane();
         textPane_12.setBounds(291, 205, 30, 30);
         frame.getContentPane().add(textPane_12);
+
+        computerFindAnswer(textPane);
+    }
+
+    public void computerFindAnswer(JTextPane textPane){
+        while(!city.generation()&&(city.getGenerationNum()<200000)){
+            textPane.setText(String.valueOf(city.truncatePercentComplete())+"%");
+            System.out.println(city.truncatePercentComplete() + "%");
+            //System.out.println(city);
+
+            //To delay the thread by 50 mills in order to allow the person to keep up.
+
+            try {
+                Thread.sleep(50);    //1000 milliseconds is one second.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+
+        }
     }
 }
