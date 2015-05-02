@@ -235,7 +235,7 @@ public class Gui {
 
 
         resetButton = new JButton("Reset");
-        Font font = new Font("Reset",Font.BOLD,12);
+        Font font = new Font("Reset",Font.PLAIN,12);
         resetButton.setFont(font);
         resetButton.setBounds(327, 168, 70, 70);
         frame.getContentPane().add(resetButton);
@@ -268,7 +268,7 @@ public class Gui {
     public void computerFindAnswer(){
         while(!city.generation() && (city.getGenerationNum() < 200000) && !userWins) {
             textPane_Computer.setText(String.valueOf(city.truncatePercentComplete()) + "% Complete");
-            System.out.println(city.truncatePercentComplete() + "% Complete" );
+            //System.out.println(city.truncatePercentComplete() + "% Complete" );
             //System.out.println(city);
 
             //To delay the thread by 50 mills in order to allow the person to keep up.
@@ -277,7 +277,6 @@ public class Gui {
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            textPane_Computer.setText(city.getGoalString());
         }
 
         if(userWins){
