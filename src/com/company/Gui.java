@@ -139,6 +139,7 @@ public class Gui {
         answerField.setBounds(55, 138, 316, 20);
         frame.getContentPane().add(answerField);
         answerField.setColumns(10);
+        answerField.requestFocus();
 
         textPane_User = new JTextPane();
         textPane_User.setEditable(false);
@@ -157,6 +158,7 @@ public class Gui {
         answerField.addActionListener(e -> {
             boolean correct = user.guess(answerField.getText());
             textPane_User.setText(hint + "\n" + user.getCurrentAnswer());
+            answerField.setText("");
             if (correct) {
                 //System.out.println("Correct Answer");
                 textPane_User.setText(textPane_User.getText() + "\n" + "Correct Answer!");
