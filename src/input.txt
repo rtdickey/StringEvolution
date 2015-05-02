@@ -1,0 +1,5 @@
+Hello World "The First print statement you ever did"
+Orange "A color that is rumored to rhyme with nothing"
+CodeRed "CougarCs's first hackathon"
+Water "The simple name for dihydrogen monoxide"
+Laptop "This item is used to browse reddit for several hours a day"
