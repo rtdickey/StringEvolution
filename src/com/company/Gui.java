@@ -234,18 +234,17 @@ public class Gui {
         textPane_12.setEditable(false);
 
 
-        resetButton = new JButton("Reset Button");
+        resetButton = new JButton("Reset");
+        Font font = new Font("Reset",Font.BOLD,12);
+        resetButton.setFont(font);
         resetButton.setBounds(327, 168, 70, 70);
         frame.getContentPane().add(resetButton);
-        resetButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                thread.interrupt();
-                thread = null;
-                frame.dispose();
-                initMenu();
-                frame.setVisible(true);
-            }
+        resetButton.addActionListener(e -> {
+            thread.interrupt();
+            thread = null;
+            frame.dispose();
+            initMenu();
+            frame.setVisible(true);
         });
         
         fillLetterPanes(user.getLetters());
