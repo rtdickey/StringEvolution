@@ -233,16 +233,18 @@ public class Gui {
         frame.getContentPane().add(textPane_12);
         textPane_12.setEditable(false);
 
+
         resetButton = new JButton("Reset Button");
-        resetButton.setBounds(327,168,70,70);
+        resetButton.setBounds(327, 168, 70, 70);
         frame.getContentPane().add(resetButton);
         resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //thread.interrupt();
-                System.out.println("Thread Stop");
                 thread.interrupt();
-                startGame();
+                thread = null;
+                frame.dispose();
+                initMenu();
+                frame.setVisible(true);
             }
         });
         
@@ -291,6 +293,6 @@ public class Gui {
         String threadName = Thread.currentThread().getName();
         System.out.println("Hello " + threadName);
         computerFindAnswer();
-        Thread.interrupted();
+        //Thread.interrupted();
     };
 }
