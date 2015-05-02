@@ -49,6 +49,10 @@ public class Gui {
     private JTextPane textPane_11;
     private JTextPane textPane_12;
 
+    private JButton resetButton;
+
+    Thread thread;
+
     /**
      * Launch the application.
      */
@@ -113,20 +117,22 @@ public class Gui {
             panel_menu.remove(startButton);
             frame.remove(panel_menu);
 
-            //choose a random question
-            int index = (int) Math.floor(Math.random() * questions.size());
-
-            userWins = false;
-            goalString = questions.elementAt(index).getGoalString();
-            hint = questions.elementAt(index).getHint();
-            user = new User(goalString,12-goalString.length());
-            city = new Population(20, goalString, .5);
-
-            initialize();
-            Thread thread = new Thread(task);
-            thread.start();
-            //computerFindAnswer();
+            startGame();
         });
+    }
+
+    private void startGame() {
+        int index = (int) Math.floor(Math.random() * questions.size());
+
+        userWins = false;
+        goalString = questions.elementAt(index).getGoalString();
+        hint = questions.elementAt(index).getHint();
+        user = new User(goalString,12-goalString.length());
+        city = new Population(20, goalString, .5);
+
+        initialize();
+        thread = new Thread(task);
+        thread.start();
     }
 
 
@@ -226,6 +232,19 @@ public class Gui {
         textPane_12.setBounds(291, 205, 30, 30);
         frame.getContentPane().add(textPane_12);
         textPane_12.setEditable(false);
+
+        resetButton = new JButton("Reset Button");
+        resetButton.setBounds(327,168,70,70);
+        frame.getContentPane().add(resetButton);
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //thread.interrupt();
+                System.out.println("Thread Stop");
+                thread.interrupt();
+                startGame();
+            }
+        });
         
         fillLetterPanes(user.getLetters());
     }
@@ -247,12 +266,11 @@ public class Gui {
 
     public void computerFindAnswer(){
         while(!city.generation() && (city.getGenerationNum() < 200000) && !userWins) {
-            textPane_Computer.setText(String.valueOf(city.truncatePercentComplete()) + "%");
-            System.out.println(city.truncatePercentComplete() + "%" );
+            textPane_Computer.setText(String.valueOf(city.truncatePercentComplete()) + "% Complete");
+            System.out.println(city.truncatePercentComplete() + "% Complete" );
             //System.out.println(city);
 
             //To delay the thread by 50 mills in order to allow the person to keep up.
-
             try {
                 Thread.sleep(50);    //1000 milliseconds is one second.
             } catch(InterruptedException ex) {
@@ -273,5 +291,6 @@ public class Gui {
         String threadName = Thread.currentThread().getName();
         System.out.println("Hello " + threadName);
         computerFindAnswer();
+        Thread.interrupted();
     };
 }
