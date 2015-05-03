@@ -128,7 +128,7 @@ public class Gui {
         goalString = questions.elementAt(index).getGoalString();
         hint = questions.elementAt(index).getHint();
         user = new User(goalString,12-goalString.length());
-        city = new Population(20, goalString, .5);
+        city = new Population(7, goalString, .2);
 
         initialize();
         thread = new Thread(task);
