@@ -266,6 +266,11 @@ public class Gui {
     }
 
     public void computerFindAnswer(){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         while(!city.generation() && (city.getGenerationNum() < 200000) && !userWins) {
             textPane_Computer.setText(String.valueOf(city.truncatePercentComplete()) + "% Complete");
             //System.out.println(city.truncatePercentComplete() + "% Complete" );
