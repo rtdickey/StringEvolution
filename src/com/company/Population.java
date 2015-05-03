@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class Population {
     private int size;
-    private Gene[] town;
+    private Chromosome[] town;
     private double chance;
     private String goalString;
     private int generationNum;
@@ -27,10 +27,10 @@ public class Population {
 
     //This function creates the town for the constructor
     private void generateTown(){
-        Gene[] town = new Gene[this.size];
+        Chromosome[] town = new Chromosome[this.size];
         int length = goalString.length();
         for(int i=0; i<this.size; i++){
-            town[i] = new Gene();
+            town[i] = new Chromosome();
             town[i].random(length);
             town[i].calcCost(goalString);
         }
@@ -126,7 +126,7 @@ public class Population {
 
         calculatePercentComplete(town[0].getCost());
 
-        Gene []children = (town[0].mate(town[1]));
+        Chromosome[]children = (town[0].mate(town[1]));
         town[size-2] = children[0];
         town[size-1] = children[1];
 

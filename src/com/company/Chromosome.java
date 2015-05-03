@@ -3,16 +3,16 @@ package com.company;
 /**
  * Created by Daniel Nguyen on 4/25/2015.
  */
-public class Gene implements Comparable<Gene>{
+public class Chromosome implements Comparable<Chromosome>{
     private String code;
     private int cost;
 
-    public Gene() {
+    public Chromosome() {
         code = "";
         cost = 9999;
     }
 
-    public Gene(String code) {
+    public Chromosome(String code) {
         this.code = code;
         cost = 9999;
     }
@@ -52,7 +52,7 @@ public class Gene implements Comparable<Gene>{
 
     @Override
     public String toString() {
-        return "Gene{" +
+        return "Chromosome{" +
                 "code='" + code + '\'' +
                 ", cost=" + cost +
                 '}';
@@ -60,16 +60,16 @@ public class Gene implements Comparable<Gene>{
 
     //The mating function takes another chromosome as an argument, finds the center point
     // and returns the 2 children in an array of size 2
-    public Gene[] mate(Gene gene){
+    public Chromosome[] mate(Chromosome chromosome){
         //Should we make the pivot point random?
         int pivot = Math.round(this.code.length() / 2) - 1;
 
-        String child1 = (this.code.substring(0, pivot) + gene.code.substring(pivot));
-        String child2 = (gene.code.substring(0, pivot) + this.code.substring(pivot));
+        String child1 = (this.code.substring(0, pivot) + chromosome.code.substring(pivot));
+        String child2 = (chromosome.code.substring(0, pivot) + this.code.substring(pivot));
 
-        Gene []children = new Gene[2];
-        children[0] = new Gene(child1);
-        children[1] = new Gene(child2);
+        Chromosome[]children = new Chromosome[2];
+        children[0] = new Chromosome(child1);
+        children[1] = new Chromosome(child2);
 
         return children;
     }
@@ -108,8 +108,8 @@ public class Gene implements Comparable<Gene>{
     }
 
     @Override
-    public int compareTo(Gene compareGene) {
-        int compareCost = compareGene.getCost();
+    public int compareTo(Chromosome compareChromosome) {
+        int compareCost = compareChromosome.getCost();
         return this.cost - compareCost;
     }
 }
