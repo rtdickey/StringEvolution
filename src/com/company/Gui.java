@@ -113,7 +113,7 @@ public class Gui {
         startButton = new JButton("Start Game");
         panel_menu.add(startButton);
         startButton.addActionListener(e -> {
-            System.out.println("HELLO");
+            //System.out.println("HELLO");
             panel_menu.remove(startButton);
             frame.remove(panel_menu);
 
@@ -294,7 +294,7 @@ public class Gui {
 
     Runnable task = () -> {
         String threadName = Thread.currentThread().getName();
-        System.out.println("Hello " + threadName);
+        //System.out.println("Hello " + threadName);
         computerFindAnswer();
         //Thread.interrupted();
     };
