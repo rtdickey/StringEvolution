@@ -1,0 +1,7 @@
+Hello World "The First print statement you ever did"
+Orange "A color that is rumored to rhyme with nothing"
+CodeRED "CougarCs' first hackathon"
+Water "The simple name for dihydrogen monoxide"
+Laptop "This item is used to browse reddit for several hours a day"
+Nothing "What you respond when your parents almost catch you watching adult themed videos"
+Mouse "Couldn't think of something. The answer is mouse"
